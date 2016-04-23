@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Connexion";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+
+<div class="form-wrapper">
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            <h3>Login In</h3>
+            <hr class="login" align="left" />
+            <div class="@ViewBag.Required">
+            <input class="larger" id="Identifiant" name="Identifiant" type="text" placeholder="Identifiant*" value="@ViewBag.Id" /><br />
+            <input class="larger" id="Password" name="Password" type="password" placeholder="Mot de Passe*" /><br />
+            </div>
+            <p><input id="SaveUser" name="SaveUser" type="checkbox" value="Sauvegarder" @ViewBag.Check /> Se Souvenir de moi sur cette ordinateur</p><br />
+            <div>
+                <p class="error">@ViewBag.Error</p>
+            </div>
+            <input type="submit" value="Se Connecter" />
+        }
+</div>
