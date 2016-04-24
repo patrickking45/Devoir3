@@ -16,7 +16,10 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("S’inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @if (Session["Firstname"] != null)
+        {
+            <li><h4>@Session["Firstname"] @Session["Lastname"] | </h4></li>
+            <li><h4>@Html.ActionLink(" Se Déconnecter", "Deconnection", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</h4></li>
+        }
     </ul>
 }

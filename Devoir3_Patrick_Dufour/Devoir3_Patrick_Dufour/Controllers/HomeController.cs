@@ -8,35 +8,31 @@ namespace Devoir3_Patrick_Dufour.Controllers
 {
     public class HomeController : Controller
     {
+        //---------------------------------------------------------------------------
+        //Méthode Get de la page Login
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        //Méthode Post de la page Login
         [HttpPost, ActionName("Index")]
         public ActionResult IndexPost(string Identifiant, string Password)
         {
-            if (connexion(Identifiant, Password)) {
+            //Vérification des informations de connexion
+            if (connexion(Identifiant, Password))
+            {
                 Response.Redirect("/Products/Index");
+            }
+            //Info invalides
+            else {
+                ViewBag.Error = "Login ou Password invalide!";
             }
             return View();
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+        //---------------------------------------------------------------------------
+        //Méthode de vérification du login et password
         private Boolean connexion(string login, string password) {
             Boolean accepted = false;
 
@@ -44,15 +40,24 @@ namespace Devoir3_Patrick_Dufour.Controllers
                 var result = from u in context.Users where u.Login == login && u.Password == password select u;
                 var user = result.FirstOrDefault();
 
+                //Création d'une session si info correct
                 if (user != null)
                 {
                     accepted = true;
                     Session["Firstname"] = user.Firstname;
                     Session["Lastname"] = user.Lastname;
-                    Session["Connected"] = true;
                 }
             }
             return accepted;
         }
+        //---------------------------------------------------------------------------
+        //Méthode de deconnexion
+        public void Deconnection() {
+            //Suppression de la session
+            Session.Abandon();
+            Response.Redirect("/Home/Index");
+
+        }
+        //---------------------------------------------------------------------------
     }
 }

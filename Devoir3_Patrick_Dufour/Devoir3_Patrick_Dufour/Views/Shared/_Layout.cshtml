@@ -15,9 +15,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li><h4>@Html.ActionLink("Accueil", "Index", "Home")</h4></li>
-                    <li><h4>@Html.ActionLink("Choisir XML", "SelectXML", "Home")</h4></li>
-                    <li><h4>@Html.ActionLink("Read XML", "ReadXML", "Home")</h4></li>
-                    <li><h4>@Html.ActionLink("Add XML", "AddXML", "Home")</h4></li>
+                    <li><h4>@Html.ActionLink("Produits", "Index", "Products")</h4></li>
+                    <li><h4>@Html.ActionLink("Ajouter", "Create", "Products")</h4></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -27,7 +26,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <div class="container"><h4>&copy; @DateTime.Now.Year - Devoir 2 - Patrick Dufour</h4></div>
+            <div class="container"><h4>&copy; @DateTime.Now.Year - Devoir 3 - Patrick Dufour</h4></div>
         </footer>
     </div>
 
