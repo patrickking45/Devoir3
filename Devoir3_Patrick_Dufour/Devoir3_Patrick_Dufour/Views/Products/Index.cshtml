@@ -10,7 +10,11 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@Html.DropDownListFor("CategoryName", ViewBag.ListOfCategories);
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.DropDownList("Category", new SelectList(ViewBag.ListofCategories), "All")
+    <button type="submit">Submit</button>
+}
 
 <table class="table">
     <tr>
@@ -40,6 +44,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
         </th>
         <th></th>
     </tr>
@@ -72,6 +79,16 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
+        </td>
+        <td>
+            @if (item.Picture == null)
+            {
+                <p>NO PICTURE</p>
+            }
+            else {
+                <img src="~/Content/Images/@Html.DisplayFor(modelItem => item.Picture)" />
+            }
+
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |

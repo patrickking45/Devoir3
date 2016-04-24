@@ -115,7 +115,7 @@
     <Property Name="UnitsOnOrder" Type="smallint" />
     <Property Name="ReorderLevel" Type="smallint" />
     <Property Name="Discontinued" Type="bit" Nullable="false" />
-    <Property Name="Picture" Type="nchar" MaxLength="20" />
+    <Property Name="Picture" Type="nchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Region">
     <Key>

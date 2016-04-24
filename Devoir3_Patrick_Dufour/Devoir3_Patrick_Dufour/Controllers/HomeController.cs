@@ -50,7 +50,6 @@ namespace Devoir3_Patrick_Dufour.Controllers
                     Session["Firstname"] = user.Firstname;
                     Session["Lastname"] = user.Lastname;
                     Session["Connected"] = true;
-
                 }
             }
             return accepted;

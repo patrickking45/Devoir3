@@ -113,7 +113,7 @@
     <Property Name="UnitsOnOrder" Type="Int16" />
     <Property Name="ReorderLevel" Type="Int16" />
     <Property Name="Discontinued" Type="Boolean" Nullable="false" />
-    <Property Name="Picture" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Picture" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
     <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Products" FromRole="Products" ToRole="Order_Details" />
     <NavigationProperty Name="Suppliers" Relationship="Self.FK_Products_Suppliers" FromRole="Products" ToRole="Suppliers" />

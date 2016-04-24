@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Patrick\Documents\Visual Studio 2015\Projects\Devoir3_Patrick_Dufour\Devoir3_Patrick_Dufour\Model1.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Patrick\Documents\Devoir3\Devoir3_Patrick_Dufour\Devoir3_Patrick_Dufour\Model1.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

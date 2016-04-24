@@ -81,6 +81,15 @@
         <dd>
             @Html.DisplayFor(model => model.Suppliers.CompanyName)
         </dd>
+        <dd>
+            @if (@Html.ValueFor(model => model.Picture) == null)
+            {
+                <p>NO PICTURE</p>
+            }
+            else {
+                <img src="~/Content/Images/@Html.DisplayFor(model => model.Picture)" />
+            }
+        </dd>
 
     </dl>
 </div>

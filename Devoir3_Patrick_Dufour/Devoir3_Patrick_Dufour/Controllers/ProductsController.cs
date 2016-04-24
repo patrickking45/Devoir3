@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Devoir3_Patrick_Dufour;
+using System.IO;
 
 namespace Devoir3_Patrick_Dufour.Controllers
 {
@@ -15,11 +16,38 @@ namespace Devoir3_Patrick_Dufour.Controllers
         private NORTHWINDEntities1 db = new NORTHWINDEntities1();
 
         // GET: Products
+        [HttpGet]
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
 
+            var categories = from c in db.Categories select c.CategoryName;
+            ViewBag.ListofCategories = categories.ToList();
+
             return View(products.ToList());
+        }
+
+        [HttpPost, ActionName("Index")]
+        public ActionResult IndexPost(string Category) {
+
+            if (Category != "")
+            {
+                var products = from p in db.Products join c in db.Categories on p.CategoryID equals c.CategoryID where c.CategoryName == Category select p;
+
+                var categories = from c in db.Categories select c.CategoryName;
+                ViewBag.ListofCategories = categories.ToList();
+
+                return View(products.ToList());
+            }
+            else {
+                var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
+
+                var categories = from c in db.Categories select c.CategoryName;
+                ViewBag.ListofCategories = categories.ToList();
+
+                return View(products.ToList());
+            }
+            return null;
         }
 
         // GET: Products/Details/5
@@ -50,10 +78,15 @@ namespace Devoir3_Patrick_Dufour.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued")] Products products)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued")] Products products, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/"), fileName);
+                file.SaveAs(path);
+
+                products.Picture = file.FileName;
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
